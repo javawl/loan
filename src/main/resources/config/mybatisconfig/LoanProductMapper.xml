@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csi.lbs.loan.business.dao.MortgageLoanProductDao" >
+  <resultMap id="BaseResultMap" type="com.csi.lbs.loan.business.entity.MortgageLoanProductEntity" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ProductCode" property="productcode" jdbcType="VARCHAR" />
+    <result column="ProductName" property="productname" jdbcType="VARCHAR" />
+    <result column="AgeEligibility" property="ageeligibility" jdbcType="INTEGER" />
+    <result column="IncomeEligibility" property="incomeeligibility" jdbcType="DECIMAL" />
+    <result column="EarlyRedemptionCharge" property="earlyredemptioncharge" jdbcType="DECIMAL" />
+    <result column="MaxAmount" property="maxamount" jdbcType="DECIMAL" />
+    <result column="MinAmount" property="minamount" jdbcType="DECIMAL" />
+    <result column="MaxPeriod" property="maxperiod" jdbcType="VARCHAR" />
+    <result column="MinPeriod" property="minperiod" jdbcType="VARCHAR" />
+    <result column="APR" property="apr" jdbcType="DECIMAL" />
+    <result column="InterestRateType" property="interestratetype" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findMany" resultMap="BaseResultMap" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanProductEntity" >
+    select * from t_mortgage_loan_product_master
+    where 1=1
+    <if test="productcode != null and productcode !=''" >
+       and ProductCode = #{productcode}
+    </if>
+  </select>
+  
+  <select id="findOne" resultType="com.csi.lbs.loan.business.entity.MortgageLoanProductEntity" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanProductEntity" >
+    select * from t_mortgage_loan_product_master
+    where 1=1
+    <if test="productcode != null and productcode !=''" >
+       and ProductCode = #{productcode}
+    </if>
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from t_mortgage_loan_product_master
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanProductEntity" >
+    insert into t_mortgage_loan_product_master
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="productcode != null" >
+        ProductCode,
+      </if>
+      <if test="productname != null" >
+        ProductName,
+      </if>
+      <if test="ageeligibility != null" >
+        AgeEligibility,
+      </if>
+      <if test="incomeeligibility != null" >
+        IncomeEligibility,
+      </if>
+      <if test="earlyredemptioncharge != null" >
+        EarlyRedemptionCharge,
+      </if>
+      <if test="maxamount != null" >
+        MaxAmount,
+      </if>
+      <if test="minamount != null" >
+        MinAmount,
+      </if>
+      <if test="maxperiod != null" >
+        MaxPeriod,
+      </if>
+      <if test="minperiod != null" >
+        MinPeriod,
+      </if>
+      <if test="apr != null" >
+        APR,
+      </if>
+      <if test="interestratetype != null" >
+        InterestRateType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="productcode != null" >
+        #{productcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productname != null" >
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="ageeligibility != null" >
+        #{ageeligibility,jdbcType=INTEGER},
+      </if>
+      <if test="incomeeligibility != null" >
+        #{incomeeligibility,jdbcType=DECIMAL},
+      </if>
+      <if test="earlyredemptioncharge != null" >
+        #{earlyredemptioncharge,jdbcType=DECIMAL},
+      </if>
+      <if test="maxamount != null" >
+        #{maxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="minamount != null" >
+        #{minamount,jdbcType=DECIMAL},
+      </if>
+      <if test="maxperiod != null" >
+        #{maxperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="minperiod != null" >
+        #{minperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="apr != null" >
+        #{apr,jdbcType=DECIMAL},
+      </if>
+      <if test="interestratetype != null" >
+        #{interestratetype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanProductEntity" >
+    update t_mortgage_loan_product_master
+    <set >
+      <if test="productcode != null" >
+        ProductCode = #{productcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productname != null" >
+        ProductName = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="ageeligibility != null" >
+        AgeEligibility = #{ageeligibility,jdbcType=INTEGER},
+      </if>
+      <if test="incomeeligibility != null" >
+        IncomeEligibility = #{incomeeligibility,jdbcType=DECIMAL},
+      </if>
+      <if test="earlyredemptioncharge != null" >
+        EarlyRedemptionCharge = #{earlyredemptioncharge,jdbcType=DECIMAL},
+      </if>
+      <if test="maxamount != null" >
+        MaxAmount = #{maxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="minamount != null" >
+        MinAmount = #{minamount,jdbcType=DECIMAL},
+      </if>
+      <if test="maxperiod != null" >
+        MaxPeriod = #{maxperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="minperiod != null" >
+        MinPeriod = #{minperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="apr != null" >
+        APR = #{apr,jdbcType=DECIMAL},
+      </if>
+      <if test="interestratetype != null" >
+        InterestRateType = #{interestratetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

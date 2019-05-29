@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csi.lbs.loan.business.dao.MortgageLoanAccountDao" >
+  <resultMap id="BaseResultMap" type="com.csi.lbs.loan.business.entity.MortgageLoanAccountEntity" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CountryCode" property="countrycode" jdbcType="VARCHAR" />
+    <result column="ClearingCode" property="clearingcode" jdbcType="VARCHAR" />
+    <result column="BranchCode" property="branchcode" jdbcType="VARCHAR" />
+    <result column="SandBoxId" property="sandboxid" jdbcType="VARCHAR" />
+    <result column="DockerId" property="dockerid" jdbcType="VARCHAR" />
+    <result column="CustomerNumber" property="customernumber" jdbcType="VARCHAR" />
+    <result column="AccountNumber" property="accountnumber" jdbcType="VARCHAR" />
+    <result column="CurrencyCode" property="currencycode" jdbcType="VARCHAR" />
+    <result column="RelAccountNumber" property="relaccountnumber" jdbcType="VARCHAR" />
+    <result column="AccountStatus" property="accountstatus" jdbcType="VARCHAR" />
+    <result column="ReportCancelDate" property="reportcanceldate" jdbcType="TIMESTAMP" />
+    <result column="LastUpdatedDate" property="lastupdateddate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="findOne" resultType="com.csi.lbs.loan.business.entity.MortgageLoanAccountEntity" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanAccountEntity" >
+    select * from t_mortgage_loan_account_master where 1=1
+    <include refid="com.csi.lbs.loan.business.base.BaseDao.dataIsolationSql"/>
+    <if test="accountnumber != null and accountnumber !=''" >
+       and AccountNumber = #{accountnumber}
+    </if>
+    <if test="customernumber != null and customernumber !=''" >
+       and CustomerNumber = #{customernumber}
+    </if>
+    <if test="relaccountnumber != null and relaccountnumber !=''" >
+       and RelAccountNumber = #{relaccountnumber}
+    </if>
+  </select>
+  <select id="findMany" resultMap="BaseResultMap" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanAccountEntity" >
+    select * from t_mortgage_loan_account_master 
+    where 1=1
+    <include refid="com.csi.lbs.loan.business.base.BaseDao.dataIsolationSql"/>
+    <if test="accountnumber != null and accountnumber !=''" >
+       and AccountNumber = #{accountnumber}
+    </if>
+    <if test="customernumber != null and customernumber !=''" >
+       and CustomerNumber = #{customernumber}
+    </if>
+    <if test="relaccountnumber != null and relaccountnumber !=''" >
+       and RelAccountNumber = #{relaccountnumber}
+    </if>
+  </select>
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from t_mortgage_loan_account_master
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanAccountEntity" >
+    insert into t_mortgage_loan_account_master
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="countrycode != null" >
+        CountryCode,
+      </if>
+      <if test="clearingcode != null" >
+        ClearingCode,
+      </if>
+      <if test="branchcode != null" >
+        BranchCode,
+      </if>
+      <if test="sandboxid != null" >
+        SandBoxId,
+      </if>
+      <if test="dockerid != null" >
+        DockerId,
+      </if>
+      <if test="customernumber != null" >
+        CustomerNumber,
+      </if>
+      <if test="accountnumber != null" >
+        AccountNumber,
+      </if>
+      <if test="currencycode != null" >
+        CurrencyCode,
+      </if>
+      <if test="relaccountnumber != null" >
+        RelAccountNumber,
+      </if>
+      <if test="accountstatus != null" >
+        AccountStatus,
+      </if>
+      <if test="reportcanceldate != null" >
+        ReportCancelDate,
+      </if>
+      <if test="lastupdateddate != null" >
+        LastUpdatedDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="countrycode != null" >
+        #{countrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="clearingcode != null" >
+        #{clearingcode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchcode != null" >
+        #{branchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxid != null" >
+        #{sandboxid,jdbcType=VARCHAR},
+      </if>
+      <if test="dockerid != null" >
+        #{dockerid,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="customernumber != null" >
+        #{customernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnumber != null" >
+        #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currencycode != null" >
+        #{currencycode,jdbcType=VARCHAR},
+      </if>
+      <if test="relaccountnumber != null" >
+        #{relaccountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="accountstatus != null" >
+        #{accountstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reportcanceldate != null" >
+        #{reportcanceldate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdateddate != null" >
+        #{lastupdateddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanAccountEntity" >
+    update t_mortgage_loan_account_master
+    <set >
+      <if test="countrycode != null" >
+        CountryCode = #{countrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="clearingcode != null" >
+        ClearingCode = #{clearingcode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchcode != null" >
+        BranchCode = #{branchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxid != null" >
+        SandBoxId = #{sandboxid,jdbcType=VARCHAR},
+      </if>
+      <if test="dockerid != null" >
+        DockerId = #{dockerid,jdbcType=VARCHAR},
+      </if>
+      <if test="customernumber != null" >
+        CustomerNumber = #{customernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnumber != null" >
+        AccountNumber = #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currencycode != null" >
+        CurrencyCode = #{currencycode,jdbcType=VARCHAR},
+      </if>
+      <if test="relaccountnumber != null" >
+        RelAccountNumber = #{relaccountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="accountstatus != null" >
+        AccountStatus = #{accountstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reportcanceldate != null" >
+        ReportCancelDate = #{reportcanceldate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdateddate != null" >
+        LastUpdatedDate = #{lastupdateddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

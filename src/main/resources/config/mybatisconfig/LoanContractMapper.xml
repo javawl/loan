@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csi.lbs.loan.business.dao.MortgageLoanContractDao" >
+  <resultMap id="BaseResultMap" type="com.csi.lbs.loan.business.entity.MortgageLoanContractEntity" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="AccountNumber" property="accountnumber" jdbcType="VARCHAR" />
+    <result column="ContractNumber" property="contractnumber" jdbcType="VARCHAR" />
+    <result column="LoanAmount" property="loanamount" jdbcType="DECIMAL" />
+    <result column="LoanMonthlyRate" property="loanmonthlyrate" jdbcType="DECIMAL" />
+    <result column="InterestAmount" property="interestamount" jdbcType="DECIMAL" />
+    <result column="CurrencyCode" property="currencycode" jdbcType="VARCHAR" />
+    <result column="RepaymentPeriod" property="repaymentperiod" jdbcType="DECIMAL" />
+    <result column="TotalPhase" property="totalphase" jdbcType="INTEGER" />
+    <result column="ContractTime" property="contracttime" jdbcType="TIMESTAMP" />
+    <result column="RepaymentAccountNumber" property="repaymentaccountnumber" jdbcType="VARCHAR" />
+    <result column="RepaymentCycle" property="repaymentcycle" jdbcType="VARCHAR" />
+    <result column="ContractStatus" property="contractstatus" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findMany" resultMap="BaseResultMap" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanContractEntity" >
+    select * from t_mortgage_loan_contract_master
+    where 1=1
+    <if test="accountnumber != null and accountnumber !=''" >
+       and AccountNumber = #{accountnumber}
+    </if>
+    <if test="contractnumber != null and contractnumber !=''" >
+       and ContractNumber = #{contractnumber}
+    </if>
+    <if test="contractstatus != null and contractstatus !=''" >
+       and ContractStatus = #{contractstatus}
+    </if> 
+  </select>
+  
+  <select id="findOne" resultType="com.csi.lbs.loan.business.entity.MortgageLoanContractEntity" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanContractEntity" >
+    select * from t_mortgage_loan_contract_master
+    where 1=1
+    <if test="accountnumber != null and accountnumber !=''" >
+       and AccountNumber = #{accountnumber}
+    </if>
+    <if test="contractnumber != null and contractnumber !=''" >
+       and ContractNumber = #{contractnumber}
+    </if>
+    <if test="contractstatus != null and contractstatus !=''" >
+       and ContractStatus = #{contractstatus}
+    </if> 
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from t_mortgage_loan_contract_master
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+ 
+  <insert id="insert" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanContractEntity" >
+    insert into t_mortgage_loan_contract_master
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="accountnumber != null" >
+        AccountNumber,
+      </if>
+      <if test="contractnumber != null" >
+        ContractNumber,
+      </if>
+      <if test="loanamount != null" >
+        LoanAmount,
+      </if>
+      <if test="loanmonthlyrate != null" >
+        LoanMonthlyRate,
+      </if>
+      <if test="interestamount != null" >
+        InterestAmount,
+      </if>
+      <if test="currencycode != null" >
+        CurrencyCode,
+      </if>
+      <if test="repaymentperiod != null" >
+        RepaymentPeriod,
+      </if>
+      <if test="totalphase != null" >
+        TotalPhase,
+      </if>
+      <if test="contracttime != null" >
+        ContractTime,
+      </if>
+      <if test="repaymentaccountnumber != null" >
+        RepaymentAccountNumber,
+      </if>
+      <if test="repaymentcycle != null" >
+        RepaymentCycle,
+      </if>
+      <if test="contractstatus != null" >
+        ContractStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnumber != null" >
+        #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contractnumber != null" >
+        #{contractnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="loanamount != null" >
+        #{loanamount,jdbcType=DECIMAL},
+      </if>
+      <if test="loanmonthlyrate != null" >
+        #{loanmonthlyrate,jdbcType=DECIMAL},
+      </if>
+      <if test="interestamount != null" >
+        #{interestamount,jdbcType=DECIMAL},
+      </if>
+      <if test="currencycode != null" >
+        #{currencycode,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentperiod != null" >
+        #{repaymentperiod,jdbcType=INTEGER},
+      </if>
+      <if test="totalphase != null" >
+        #{totalphase,jdbcType=VARCHAR},
+      </if>
+      <if test="contracttime != null" >
+        #{contracttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaymentaccountnumber != null" >
+        #{repaymentaccountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentcycle != null" >
+        #{repaymentcycle,jdbcType=VARCHAR},
+      </if>
+      <if test="contractstatus != null" >
+        #{contractstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanContractEntity" >
+    update t_mortgage_loan_contract_master
+    <set >
+      <if test="accountnumber != null" >
+        AccountNumber = #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contractnumber != null" >
+        ContractNumber = #{contractnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="loanamount != null" >
+        LoanAmount = #{loanamount,jdbcType=DECIMAL},
+      </if>
+      <if test="loanmonthlyrate != null" >
+        LoanMonthlyRate = #{loanmonthlyrate,jdbcType=DECIMAL},
+      </if>
+      <if test="interestamount != null" >
+        InterestAmount = #{interestamount,jdbcType=DECIMAL},
+      </if>
+      <if test="currencycode != null" >
+        CurrencyCode = #{currencycode,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentperiod != null" >
+        RepaymentPeriod = #{repaymentperiod,jdbcType=INTEGER},
+      </if>
+      <if test="totalphase != null" >
+        TotalPhase = #{totalphase,jdbcType=VARCHAR},
+      </if>
+      <if test="contracttime != null" >
+        ContractTime = #{contracttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaymentaccountnumber != null" >
+        RepaymentAccountNumber = #{repaymentaccountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentcycle != null" >
+        RepaymentCycle = #{repaymentcycle,jdbcType=VARCHAR},
+      </if>
+      <if test="contractstatus != null" >
+        ContractStatus = #{contractstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

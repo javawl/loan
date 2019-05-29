@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csi.lbs.loan.business.dao.MortgagePeriodRateDao" >
+  <resultMap id="BaseResultMap" type="com.csi.lbs.loan.business.entity.MortgagePeriodRateEntity" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="RepaymentPeriod" property="repaymentperiod" jdbcType="INTEGER" />
+    <result column="Rate" property="rate" jdbcType="DECIMAL" />
+  </resultMap>
+
+  <select id="findMany" resultMap="BaseResultMap" parameterType="com.csi.lbs.loan.business.entity.MortgagePeriodRateEntity" >
+    select * from t_mortgage_period_rate
+    where 1=1
+  </select>
+  
+  <select id="findOne" resultType="com.csi.lbs.loan.business.entity.MortgagePeriodRateEntity" parameterType="com.csi.lbs.loan.business.entity.MortgagePeriodRateEntity" >
+    select * from t_mortgage_period_rate
+    where 1=1
+    <if test="repaymentperiod != null and repaymentperiod !=''" >
+       and RepaymentPeriod = #{repaymentperiod}
+    </if>
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from t_mortgage_period_rate
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.csi.lbs.loan.business.entity.MortgagePeriodRateEntity" >
+    insert into t_mortgage_period_rate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="repaymentperiod != null" >
+        RepaymentPeriod,
+      </if>
+      <if test="rate != null" >
+        Rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentperiod != null" >
+        #{repaymentperiod,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.csi.lbs.loan.business.entity.MortgagePeriodRateEntity" >
+    update t_mortgage_period_rate
+    <set >
+      <if test="repaymentperiod != null" >
+        RepaymentPeriod = #{repaymentperiod,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null" >
+        Rate = #{rate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

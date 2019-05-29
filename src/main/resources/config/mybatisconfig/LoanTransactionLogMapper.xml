@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csi.lbs.loan.business.dao.MortgageLoanTransactionLogDao" >
+  <resultMap id="BaseResultMap" type="com.csi.lbs.loan.business.entity.MortgageLoanTransactionLogEntity" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CountryCode" property="countrycode" jdbcType="VARCHAR" />
+    <result column="ClearingCode" property="clearingcode" jdbcType="VARCHAR" />
+    <result column="BranchCode" property="branchcode" jdbcType="VARCHAR" />
+    <result column="SandBoxId" property="sandboxid" jdbcType="VARCHAR" />
+    <result column="DockerId" property="dockerid" jdbcType="VARCHAR" />
+    <result column="DealNumber" property="dealnumber" jdbcType="VARCHAR" />
+    <result column="AccountNumber" property="accountnumber" jdbcType="VARCHAR" />
+    <result column="ContractNumber" property="contractnumber" jdbcType="VARCHAR" />
+    <result column="RelAccountNumber" property="relaccountnumber" jdbcType="VARCHAR" />
+    <result column="PhaseNo" property="phaseno" jdbcType="VARCHAR" />
+    <result column="TranType" property="trantype" jdbcType="VARCHAR" />
+    <result column="TranAmt" property="tranamt" jdbcType="DECIMAL" />
+    <result column="Ccy" property="ccy" jdbcType="VARCHAR" />
+    <result column="TranTime" property="trantime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="findMany" resultMap="BaseResultMap" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanTransactionLogEntity" >
+    select * from t_mortgage_loan_transaction_log
+    where 1=1
+    <include refid="com.csi.lbs.loan.business.base.BaseDao.dataIsolationSql"/>
+    <if test="accountnumber != null and accountnumber !=''" >
+       and AccountNumber = #{accountnumber}
+    </if>
+    <if test="contractnumber != null and contractnumber !=''" >
+       and ContractNumber = #{contractnumber}
+    </if>
+    <if test="phaseno != null and phaseno !=''" >
+       and PhaseNo = #{phaseno}
+    </if>
+    <if test="transFromDate != null and transFromDate != ''" >
+       and DATE_FORMAT(trantime, '%Y-%m-%d') &gt;= #{transFromDate}
+    </if>
+    <if test="transToDate != null and transToDate != ''" >
+       and DATE_FORMAT(trantime, '%Y-%m-%d') &lt;= #{transToDate}
+    </if>
+  </select>
+  
+  <select id="findOne" resultType="com.csi.lbs.loan.business.entity.MortgageLoanTransactionLogEntity" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanTransactionLogEntity" >
+    select * from t_mortgage_loan_transaction_log
+    where 1=1
+    <include refid="com.csi.lbs.loan.business.base.BaseDao.dataIsolationSql"/>
+    <if test="accountnumber != null and accountnumber !=''" >
+       and AccountNumber = #{accountnumber}
+    </if> 
+    <if test="contractnumber != null and contractnumber !=''" >
+       and ContractNumber = #{contractnumber}
+    </if>
+    <if test="phaseno != null and phaseno !=''" >
+       and PhaseNo = #{phaseno}
+    </if>
+    <if test="dealnumber != null and dealnumber !=''" >
+       and DealNumber = #{dealnumber}
+    </if>
+    <if test="transFromDate != null and transFromDate != ''" >
+       and DATE_FORMAT(trantime, '%Y-%m-%d') &gt;= #{transFromDate}
+    </if>
+    <if test="transToDate != null and transToDate != ''" >
+       and DATE_FORMAT(trantime, '%Y-%m-%d') &lt;= #{transToDate}
+    </if>
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from t_mortgage_loan_transaction_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanTransactionLogEntity" >
+    insert into t_mortgage_loan_transaction_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="countrycode != null" >
+        CountryCode,
+      </if>
+      <if test="clearingcode != null" >
+        ClearingCode,
+      </if>
+      <if test="branchcode != null" >
+        BranchCode,
+      </if>
+      <if test="sandboxid != null" >
+        SandBoxId,
+      </if>
+      <if test="dockerid != null" >
+        DockerId,
+      </if>
+      <if test="dealnumber != null" >
+        DealNumber,
+      </if>
+      <if test="accountnumber != null" >
+        AccountNumber,
+      </if>
+      <if test="contractnumber != null" >
+        ContractNumber,
+      </if>
+      <if test="relaccountnumber != null" >
+        RelAccountNumber,
+      </if>
+      <if test="phaseno != null" >
+        PhaseNo,
+      </if>
+      <if test="trantype != null" >
+        TranType,
+      </if>
+      <if test="tranamt != null" >
+        TranAmt,
+      </if>
+      <if test="ccy != null" >
+        Ccy,
+      </if>
+      <if test="trantime != null" >
+        TranTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="countrycode != null" >
+        #{countrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="clearingcode != null" >
+        #{clearingcode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchcode != null" >
+        #{branchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxid != null" >
+        #{sandboxid,jdbcType=VARCHAR},
+      </if>
+      <if test="dockerid != null" >
+        #{dockerid,jdbcType=VARCHAR},
+      </if>
+      <if test="dealnumber != null" >
+        #{dealnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnumber != null" >
+        #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contractnumber != null" >
+        #{contractnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="relaccountnumber != null" >
+        #{relaccountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phaseno != null" >
+        #{phaseno,jdbcType=VARCHAR},
+      </if>
+      <if test="trantype != null" >
+        #{trantype,jdbcType=VARCHAR},
+      </if>
+      <if test="tranamt != null" >
+        #{tranamt,jdbcType=DECIMAL},
+      </if>
+      <if test="ccy != null" >
+        #{ccy,jdbcType=VARCHAR},
+      </if>
+      <if test="trantime != null" >
+        #{trantime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.csi.lbs.loan.business.entity.MortgageLoanTransactionLogEntity" >
+    update t_mortgage_loan_transaction_log
+    <set >
+      <if test="countrycode != null" >
+        CountryCode = #{countrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="clearingcode != null" >
+        ClearingCode = #{clearingcode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchcode != null" >
+        BranchCode = #{branchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxid != null" >
+        SandBoxId = #{sandboxid,jdbcType=VARCHAR},
+      </if>
+      <if test="dockerid != null" >
+        DockerId = #{dockerid,jdbcType=VARCHAR},
+      </if>
+      <if test="dealnumber != null" >
+        DealNumber = #{dealnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnumber != null" >
+        AccountNumber = #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contractnumber != null" >
+        ContractNumber = #{contractnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="relaccountnumber != null" >
+        RelAccountNumber = #{relaccountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phaseno != null" >
+        PhaseNo = #{phaseno,jdbcType=VARCHAR},
+      </if>
+      <if test="trantype != null" >
+        TranType = #{trantype,jdbcType=VARCHAR},
+      </if>
+      <if test="tranamt != null" >
+        TranAmt = #{tranamt,jdbcType=DECIMAL},
+      </if>
+      <if test="ccy != null" >
+        Ccy = #{ccy,jdbcType=VARCHAR},
+      </if>
+      <if test="trantime != null" >
+        TranTime = #{trantime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

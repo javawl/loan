@@ -17,6 +17,8 @@ import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import com.csi.lbs.loan.business.constant.SysConstant;
  
 /**
  * Swagger2配置类
@@ -67,7 +69,7 @@ public class Swagger2 {
         
         return new Docket(DocumentationType.SWAGGER_2)
         		.globalOperationParameters(parameters)
-                //.host(SysConstant.GATEWAY_SERVICE)
+                .host(SysConstant.GATEWAY_SERVICE)
                 .groupName("loan-api")
                 .useDefaultResponseMessages(false)
                 .apiInfo(apiInfo())

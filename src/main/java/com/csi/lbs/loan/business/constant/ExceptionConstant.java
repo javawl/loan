@@ -11,6 +11,7 @@ public class ExceptionConstant {
 	public static final int ERROR_CODE202001 = 202001;//账号状态不是Active的
 	public static final int ERROR_CODE202002 = 202002;//账号余额不足
 	public static final int ERROR_CODE202003 = 202003;//借款金额大于最大贷款金额
+	public static final int ERROR_CODE202008 = 202008;//无效时间
 	
 	public static final int ERROR_CODE400001 = 400001;//必填字段不全
 	public static final int ERROR_CODE400002 = 400002;//请求body格式有误
@@ -32,6 +33,7 @@ public class ExceptionConstant {
     public static final int ERROR_CODE500007 = 500007;//有未还账单不能取消账户
     public static final int ERROR_CODE500008 = 500008;//小于最小贷款金额
     public static final int ERROR_CODE500009 = 500009;//输入的还款金额与待还款金额不同
+    public static final int ERROR_CODE500010 = 500010;//交易记录时间格式不正确
     public static final int ERROR_CODE500012 = 500012;//操作失败
 	
     public static Map<Integer,String> getExceptionMap(){
@@ -42,6 +44,7 @@ public class ExceptionConstant {
     	
     	map.put(ERROR_CODE202001, "Inactive Locan Account");//账号状态不是Active的
     	map.put(ERROR_CODE202002, "Insufficient Fund");//账号余额不足
+    	map.put(ERROR_CODE202008, "Invalid date range");
     		
     	map.put(ERROR_CODE400001, "Required field incomplete");//必填字段不全
     	map.put(ERROR_CODE400002, "Incorrect requesting format");//请求body格式有误
@@ -63,6 +66,7 @@ public class ExceptionConstant {
     	map.put(ERROR_CODE500007, "Failed to cancel due to unpaid bill");//有未还账单不能取消账户
     	map.put(ERROR_CODE500008, "The minimum borrowing needs is 500 HKD");//小于最小贷款金额
     	map.put(ERROR_CODE500009, "Incorrect payment amount. Please check your outstanding payment and try again");
+    	map.put(ERROR_CODE500010, "Invalid date format");//交易记录时间格式不正确
     	map.put(ERROR_CODE500012, "Operation failed");//操作失败-开卡失败
     	return map;
     }

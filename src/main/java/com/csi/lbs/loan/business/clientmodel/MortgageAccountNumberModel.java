@@ -14,7 +14,7 @@ public class MortgageAccountNumberModel {
 //	@NotBlank(message="accountnumber is a required field")
 	@Length(min=23, max=23, message="the format of the accountnumber is not correct")
 	@ApiModelProperty(notes="A unique number used to identify a mortgage loan account."
-	,example="")
+	,example="HK620001001000005086600")
 	private String accountnumber;
 
 	public String getAccountnumber() {

@@ -48,6 +48,7 @@ import com.csi.sbs.common.business.constant.CommonConstant;
 import com.csi.sbs.common.business.json.JsonProcess;
 import com.csi.sbs.common.business.util.UUIDUtil;
 import com.csi.sbs.common.business.util.XmlToJsonUtil;
+import com.csi.lbs.loan.business.exception.DateException;
 import com.csi.sbs.common.business.util.DataIsolationUtil;
 import com.csi.lbs.loan.business.exception.InsertException;
 import com.csi.lbs.loan.business.exception.UpdateException;
@@ -1070,6 +1071,20 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 		TransactionInfoModel data = new TransactionInfoModel();
 		
 		/*
+		 * 校验日期格式
+		 */
+		if(!CheckDate(ase.getTransFromDate())){
+			throw new DateException(ExceptionConstant.getExceptionMap().get(ExceptionConstant.ERROR_CODE500010),ExceptionConstant.ERROR_CODE500010);
+		}
+		if(!CheckDate(ase.getTransToDate())){
+			throw new DateException(ExceptionConstant.getExceptionMap().get(ExceptionConstant.ERROR_CODE500010),ExceptionConstant.ERROR_CODE500010);
+		}
+		
+		if(format2.parse(ase.getTransFromDate()).getTime() >= format2.parse(ase.getTransToDate()).getTime()){
+			throw new AcceptException(ExceptionConstant.getExceptionMap().get(ExceptionConstant.ERROR_CODE202008),ExceptionConstant.ERROR_CODE202008);
+		}
+		
+		/*
 		 * 获取mrotgage loan account infomation
 		 */
 		MortgageLoanAccountEntity accountInfo =  new MortgageLoanAccountEntity();
@@ -1089,12 +1104,14 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 		MortgageLoanTransactionLogEntity request = new MortgageLoanTransactionLogEntity();
 		request.setAccountnumber(ase.getAccountnumber());
 		request.setContractnumber(ase.getContractnumber());
+		request.setTransFromDate(ase.getTransFromDate());
+		request.setTransToDate(ase.getTransToDate());
 		request = (MortgageLoanTransactionLogEntity) DataIsolationUtil.condition(header, request);
 		
 		List<MortgageLoanTransactionLogEntity> res = mortgageLoanTransactionLogDao.findMany(request);
 		List<TransactionDetailModel> list = new ArrayList<TransactionDetailModel>();
 		if(res == null || res.size() == 0){
-			list = null;
+			throw new NotFoundException(ExceptionConstant.getExceptionMap().get(ExceptionConstant.ERROR_CODE404003),ExceptionConstant.ERROR_CODE404003);
 		}
 		
 		for(int i=0; i < res.size(); i++){
@@ -1558,6 +1575,16 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 				return "";
 			}
 			return responseString;
+		}
+	}
+	
+	//校验日期格式
+	private boolean CheckDate(String date){
+		String rexp1 = "((\\d{2}(([02468][048])|([13579][26]))[\\-]((((0?[13578])|(1[02]))[\\-]((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-]((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-]((0?[1-9])|([1-2][0-9])))))|(\\d{2}(([02468][1235679])|([13579][01345789]))[\\-]((((0?[13578])|(1[02]))[\\-]((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-]((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-]((0?[1-9])|(1[0-9])|(2[0-8]))))))";
+		if(date.matches(rexp1)){
+			return true;
+		}else{
+			return false;
 		}
 	}
 }

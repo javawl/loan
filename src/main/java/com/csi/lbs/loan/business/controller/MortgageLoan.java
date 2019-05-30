@@ -330,7 +330,7 @@ public class MortgageLoan{
 	 */
 	@RequestMapping(value = "/overDueRepaymentEnquiry", method = RequestMethod.POST)
 	@ResponseBody
-	@ApiOperation(value = "This API is designed to get outstanding repayment bill.", notes = "version 0.0.1")
+	@ApiOperation(value = "This API is designed to get over due repayment bill.", notes = "version 0.0.1")
 	@ApiResponses({ @ApiResponse(code = 200, message = "Query completed successfully.(Returned By Get)"),
 			@ApiResponse(code = 404, message = "The requested deposit account does not exist.Action: Please make sure the account number and account type you’re inputting are correct."),
 			@ApiResponse(code = 201, message = "Normal execution. The request has succeeded. (Returned By Post)"),
@@ -372,7 +372,7 @@ public class MortgageLoan{
 	 */
 	@RequestMapping(value = "/nextRepaymentEnquiry", method = RequestMethod.POST)
 	@ResponseBody
-	@ApiOperation(value = "This API is designed to get outstanding repayment bill.", notes = "version 0.0.1")
+	@ApiOperation(value = "This API is designed to get next repayment bill.", notes = "version 0.0.1")
 	@ApiResponses({ @ApiResponse(code = 200, message = "Query completed successfully.(Returned By Get)"),
 			@ApiResponse(code = 404, message = "The requested deposit account does not exist.Action: Please make sure the account number and account type you’re inputting are correct."),
 			@ApiResponse(code = 201, message = "Normal execution. The request has succeeded. (Returned By Post)"),

@@ -10,19 +10,20 @@ public class TransactionRequestModel {
 	
 	@NotNull(message="accountnumber is a required field")
 	@NotBlank(message="accountnumber is a required field")
-    @ApiModelProperty(notes="A unique bank accunt number.",allowEmptyValue=false,required=true,example="")
+    @ApiModelProperty(notes="A unique bank accunt number.",allowEmptyValue=false,required=true,example="HK620001001000005086600")
 	private String accountnumber;
 	
 	@ApiModelProperty(allowEmptyValue=true,required=false,notes="The start date of the transactions."
-   			,example="2018-02-14")
+   			,example="2019-05-01")
 	private String transFromDate;
 	
    	@ApiModelProperty(allowEmptyValue=true,required=false,notes="The end date of the transactions."
-			,example="2019-05-26")
+			,example="2019-06-30")
 	private String transToDate;
    	
    	@NotNull(message="contractnumber is a required field")
 	@NotBlank(message="contractnumber is a required field")
+   	@ApiModelProperty(notes="A unique number to identify mortgage loan contract.",allowEmptyValue=false,required=true,example="000000001")
    	private String contractnumber;
 
 	public String getContractnumber() {

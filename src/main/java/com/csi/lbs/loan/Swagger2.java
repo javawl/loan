@@ -3,6 +3,8 @@ package com.csi.lbs.loan;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,7 +20,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import com.csi.lbs.loan.business.constant.SysConstant;
+import com.csi.lbs.loan.business.config.PathConfig;
  
 /**
  * Swagger2配置类
@@ -29,6 +31,11 @@ import com.csi.lbs.loan.business.constant.SysConstant;
 @Configuration
 @EnableSwagger2
 public class Swagger2 {
+	
+	
+	@Resource
+	private PathConfig pathConfig;
+    
     
     /**
      * 创建API应用
@@ -69,7 +76,7 @@ public class Swagger2 {
         
         return new Docket(DocumentationType.SWAGGER_2)
         		.globalOperationParameters(parameters)
-                .host(SysConstant.GATEWAY_SERVICE)
+                .host(pathConfig.getGateWayUrl())
                 .groupName("loan-api")
                 .useDefaultResponseMessages(false)
                 .apiInfo(apiInfo())
@@ -89,9 +96,9 @@ public class Swagger2 {
     @SuppressWarnings("deprecation")
 	private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Open API for loan service")
-                //.description(SysConstant.LOCAL_DESCRIBE)
-                //.termsOfServiceUrl(SysConstant.LOCAL_SERVICE_URL)
+                .title("Loan service")
+                .description("Loan service")
+                //.termsOfServiceUrl("http://localhost:8098/loan")
                 .contact("Pim li:lihuacheng@chinasofti.com")
                 .version("1.0")
                 .build();

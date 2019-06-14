@@ -45,5 +45,5 @@ public interface MortgageLoanService {
 	@SuppressWarnings("rawtypes")
 	public ResultUtil repayment(HeaderModel header, RepaymentModel ase, RestTemplate restTemplate) throws Exception;
 	
-	public Map<String, Object> resetContractDueInfo(RestTemplate restTemplate) throws Exception;
+	public Map<String, Object> resetContractDueInfo(RestTemplate restTemplate) throws Exception;	
 }

@@ -15,7 +15,6 @@ import com.csi.lbs.loan.business.clientmodel.RepaymentModel;
 import com.csi.lbs.loan.business.clientmodel.TransactionRequestModel;
 import com.csi.lbs.loan.business.clientmodel.MortgageAccountNumberModel;
 import com.csi.lbs.loan.business.clientmodel.AccountContractNumberModel;
-import com.csi.lbs.loan.business.clientmodel.CheckAccountTypeModel;
 import com.csi.lbs.loan.business.clientmodel.ContranctDetailModel;
 import com.csi.lbs.loan.business.clientmodel.ContractOutstandingModel;
 import com.csi.lbs.loan.business.clientmodel.NextRepaymentModel;

@@ -15,6 +15,7 @@ import com.csi.lbs.loan.business.clientmodel.RepaymentModel;
 import com.csi.lbs.loan.business.clientmodel.TransactionRequestModel;
 import com.csi.lbs.loan.business.clientmodel.MortgageAccountNumberModel;
 import com.csi.lbs.loan.business.clientmodel.AccountContractNumberModel;
+import com.csi.lbs.loan.business.clientmodel.CheckAccountTypeModel;
 import com.csi.lbs.loan.business.clientmodel.ContranctDetailModel;
 import com.csi.lbs.loan.business.clientmodel.ContractOutstandingModel;
 import com.csi.lbs.loan.business.clientmodel.NextRepaymentModel;
@@ -45,5 +46,5 @@ public interface MortgageLoanService {
 	@SuppressWarnings("rawtypes")
 	public ResultUtil repayment(HeaderModel header, RepaymentModel ase, RestTemplate restTemplate) throws Exception;
 	
-	public Map<String, Object> resetContractDueInfo(RestTemplate restTemplate) throws Exception;
+	public Map<String, Object> resetContractDueInfo(RestTemplate restTemplate) throws Exception;	
 }

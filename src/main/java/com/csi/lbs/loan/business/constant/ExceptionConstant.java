@@ -7,6 +7,7 @@ public class ExceptionConstant {
 	
 	public static final int ERROR_CODE201001 = 201001;//不是一个Sav 或者 Current 账号
 	public static final int ERROR_CODE201002 = 201002;//debit账号关闭
+	public static final int ERROR_CODE201003 = 201003;//debit账号关闭
 	
 	public static final int ERROR_CODE202001 = 202001;//账号状态不是Active的
 	public static final int ERROR_CODE202002 = 202002;//账号余额不足
@@ -41,6 +42,7 @@ public class ExceptionConstant {
     	
     	map.put(ERROR_CODE201001, "Not a SAV or a Current Account type");//不是一个Sav 或者 Current 账号
     	map.put(ERROR_CODE201002, "Debit Account has closed");
+    	map.put(ERROR_CODE201003, "Not a Mortgage Loan Account type");
     	
     	map.put(ERROR_CODE202001, "Inactive Locan Account");//账号状态不是Active的
     	map.put(ERROR_CODE202002, "Insufficient Fund");//账号余额不足
@@ -68,6 +70,15 @@ public class ExceptionConstant {
     	map.put(ERROR_CODE500009, "Incorrect payment amount. Please check your outstanding payment and try again");
     	map.put(ERROR_CODE500010, "Invalid date format");//交易记录时间格式不正确
     	map.put(ERROR_CODE500012, "Operation failed");//操作失败-开卡失败
+    	return map;
+    }
+    
+  //执行成功码
+    public static final int SUCCESS_CODE200 = 200;//执行成功
+    public static Map<Integer,String> getSuccessMap(){
+    	Map<Integer,String> map = new HashMap<Integer,String>();
+    	map.put(SUCCESS_CODE200, "Operation Successed");//执行成功
+    	
     	return map;
     }
 }

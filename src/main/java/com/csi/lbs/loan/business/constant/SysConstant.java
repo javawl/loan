@@ -59,10 +59,10 @@ public class SysConstant {
 	   public static final String TRANSACTION_TYPE7 = "0007";
 	   public static final String TRANSACTION_TYPE8 = "0008";
 	   public static final String TRANSACTION_TYPE9 = "0009";
-	   public static final String TRANSACTION_TYPE10 = "00010";
-	   public static final String TRANSACTION_TYPE11 = "00011";
-	   public static final String TRANSACTION_TYPE12 = "00012";
-	   public static final String TRANSACTION_TYPE13 = "00013";
+	   public static final String TRANSACTION_TYPE10 = "0010";
+	   public static final String TRANSACTION_TYPE11 = "0011";
+	   public static final String TRANSACTION_TYPE12 = "0012";
+	   public static final String TRANSACTION_TYPE13 = "0013";
 	   
 	   public static Map<String,Object> getTransactionTypeMap(){
 		   Map<String,Object> map = new HashMap<String,Object>();

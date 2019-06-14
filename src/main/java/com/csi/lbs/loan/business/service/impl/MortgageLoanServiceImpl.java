@@ -48,6 +48,7 @@ import com.csi.sbs.common.business.constant.CommonConstant;
 import com.csi.sbs.common.business.json.JsonProcess;
 import com.csi.sbs.common.business.util.UUIDUtil;
 import com.csi.sbs.common.business.util.XmlToJsonUtil;
+import com.csi.lbs.loan.business.clientmodel.CheckAccountTypeModel;
 import com.csi.lbs.loan.business.exception.DateException;
 import com.csi.sbs.common.business.util.DataIsolationUtil;
 import com.csi.lbs.loan.business.exception.InsertException;

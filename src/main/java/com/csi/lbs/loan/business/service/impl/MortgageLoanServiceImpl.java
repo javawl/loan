@@ -13,11 +13,13 @@ import javax.annotation.Resource;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.codingapi.tx.annotation.TxTransaction;
 import com.csi.sbs.common.business.model.HeaderModel;
 import com.csi.lbs.loan.business.clientmodel.AccountContractNumberModel;
 import com.csi.lbs.loan.business.clientmodel.ContractNumberModel;
@@ -110,6 +112,8 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@TxTransaction(isStart = true)
+	@Transactional
 	public Map<String,Object> openingLoanAccount(HeaderModel header, OpeningLoanAccountModel loan,
 			RestTemplate restTemplate) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -161,6 +165,8 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
+	@TxTransaction(isStart = true)
+	@Transactional
 	public ResultUtil<MortgageLoanAmountModel> mortgageLoanCalculator(MortgageCalculatorModel ase) throws Exception{
 		ResultUtil result = new ResultUtil();
 		MortgageLoanAmountModel loanInfo = new MortgageLoanAmountModel();
@@ -274,6 +280,8 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
+	@TxTransaction(isStart = true)
+	@Transactional
 	public ResultUtil<MortgageAccountInfoModel> accountDetailEnquiry(HeaderModel header, MortgageAccountNumberModel ase, RestTemplate restTemplate)
 			throws Exception {
 		ResultUtil<MortgageAccountInfoModel> result = new ResultUtil();
@@ -361,6 +369,8 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
+	@TxTransaction(isStart = true)
+	@Transactional
 	public ResultUtil<ReMortgageContractInfo> mortgageLoanApplication(HeaderModel header,
 			MortgageLoanApplicationModel ase, RestTemplate restTemplate) throws Exception {
 		
@@ -726,6 +736,8 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
+	@TxTransaction(isStart = true)
+	@Transactional
 	public ResultUtil mortgageLoanCancellation(HeaderModel header, MortgageAccountNumberModel ase,
 			RestTemplate restTemplate) throws Exception {
 		
@@ -810,6 +822,8 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@TxTransaction(isStart = true)
+	@Transactional
 	public ResultUtil<ContranctDetailModel> repaymentPlan(HeaderModel header, AccountContractNumberModel ase)
 			throws Exception {
 		ResultUtil<ContranctDetailModel> result = new ResultUtil<ContranctDetailModel>();
@@ -887,6 +901,8 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@TxTransaction(isStart = true)
+	@Transactional
 	public ResultUtil<ContractOutstandingModel> overDueRepaymentEnquiry(HeaderModel header,
 			AccountContractNumberModel ase) throws Exception {
 		ResultUtil<ContractOutstandingModel> result = new ResultUtil<ContractOutstandingModel>();
@@ -990,6 +1006,8 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@TxTransaction(isStart = true)
+	@Transactional
 	public ResultUtil<NextRepaymentModel> nextRepaymentEnquiry(HeaderModel header, AccountContractNumberModel ase)
 			throws Exception {
 		ResultUtil<NextRepaymentModel> result = new ResultUtil<NextRepaymentModel>();
@@ -1064,6 +1082,8 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@TxTransaction(isStart = true)
+	@Transactional
 	public ResultUtil<TransactionInfoModel> transactionEnquiry(HeaderModel header, TransactionRequestModel ase)
 			throws Exception {
 		// TODO Auto-generated method stub
@@ -1144,6 +1164,8 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
+	@TxTransaction(isStart = true)
+	@Transactional
 	public ResultUtil repayment(HeaderModel header, RepaymentModel ase, RestTemplate restTemplate) throws Exception {
 		ResultUtil result = new ResultUtil();
 		
@@ -1423,6 +1445,8 @@ public class MortgageLoanServiceImpl implements MortgageLoanService{
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@TxTransaction(isStart = true)
+	@Transactional
 	public Map<String, Object> resetContractDueInfo(RestTemplate restTemplate) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
